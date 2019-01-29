@@ -2,7 +2,7 @@ package com.transerve.genericdialog;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.transerve.genericdialog.models.GenericDialog;
@@ -22,16 +22,25 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick(R.id.btn_click)
     public void onViewClicked() {
-        final GenericDialog genericDialog = new GenericDialog.Builder(this)
-                .setIcon(R.mipmap.ic_launcher)
-                .setTitle("Success !").setTitleTextColor(R.color.colorAccent)
-                .setMessage("Data collected successfully").setMessageTextColor(R.color.colorPrimary)
-                        .setPositiveButton("OK",R.drawable.back_round_corner,R.color.colorWhite,R.color.colorAccent,new GenericDialogOnClickListener() {
-                            @Override
-                            public void onClick() {
-                                Toast.makeText(MainActivity.this, "LCNJds", Toast.LENGTH_SHORT).show();
-                            }
-                        })
+        new GenericDialog.Builder(this)
+                .setDialogFont(R.font.nunito_bold)
+                .setIcon(R.drawable.icon)
+                .setTitle("Success !").setTitleAppearnce(R.color.colorAccent, 20)
+                .setMessage("Data collected successfully").setMessageAppearance(R.color.colorPrimary, 14)
+                .addNewButton(R.style.NegativeButton, new GenericDialogOnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(MainActivity.this, "No Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addNewButton(R.style.PositiveButton, new GenericDialogOnClickListener() {
+                    @Override
+                    public void onClick() {
+                        Toast.makeText(MainActivity.this, "Yes Clicked", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setButtonOrientation(LinearLayout.HORIZONTAL)
                 .generate();
+
     }
 }
