@@ -145,7 +145,7 @@ public class GenericDialog {
                     btnPositive.setTextColor(ContextCompat.getColor(context, positiveButtonTextColor));
                 }
                 btnPositive.setTextAppearance(R.style.GlobalButton);
-            }
+            }///
 
             //NegativeButton
             if (negativeBtnListener != null) {
