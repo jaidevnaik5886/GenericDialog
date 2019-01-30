@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
 public class GenericDialog {
 
     private String title, message;
-    private int icon, titleTextColor, messageTextColor, buttonOrientation, dialogFont;
+    private int icon, titleTextColor, messageTextColor, buttonOrientation, dialogFont, dialogTheme;
     private float titleTextSize, messageTextSize;
     private boolean isDialogCancelable;
 
@@ -41,12 +41,13 @@ public class GenericDialog {
         this.isDialogCancelable = builder.isDialogCancelable;
         this.titleTextSize = builder.titleTextSize;
         this.messageTextSize = builder.messageTextSize;
+        this.dialogTheme = builder.dialogTheme;
     }
 
     public static class Builder {
 
         private String title, message;
-        private int icon, titleTextColor, messageTextColor, dialogFont, buttonOrientation;
+        private int icon, titleTextColor, messageTextColor, dialogFont, buttonOrientation, dialogTheme;
         private float titleTextSize, messageTextSize;
         private boolean isDialogCancelable;
         private View view;
@@ -97,7 +98,11 @@ public class GenericDialog {
         AlertDialog displayDialog;
 
         public GenericDialog generate() {
-            dialog = new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.MyAlertDialogTheme));
+            if (dialogTheme != 0) {
+                dialog = new AlertDialog.Builder(new ContextThemeWrapper(context, dialogTheme));
+            } else {
+                dialog = new AlertDialog.Builder(context);
+            }
             dialog.setCancelable(true);
             view = LayoutInflater.from(context).inflate(R.layout.layout_generic_dialog, null);
             ButterKnife.bind(this, view);
@@ -109,7 +114,9 @@ public class GenericDialog {
         }
 
         private void initViews() {
-            typeface = ResourcesCompat.getFont(context, dialogFont);
+            if (dialogFont != 0) {
+                typeface = ResourcesCompat.getFont(context, dialogFont);
+            }
 
             //Title
             if (title != null) {
@@ -170,6 +177,11 @@ public class GenericDialog {
 
         public Builder setCancelable(boolean cancel) {
             this.isDialogCancelable = cancel;
+            return this;
+        }
+
+        public Builder setDialogTheme(@StyleRes int genericDialogTheme) {
+            this.dialogTheme = genericDialogTheme;
             return this;
         }
     }
