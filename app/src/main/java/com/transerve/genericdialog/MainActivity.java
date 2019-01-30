@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 })
                 .setButtonOrientation(LinearLayout.HORIZONTAL)
+                .setCancelable(true)
                 .generate();
 
     }

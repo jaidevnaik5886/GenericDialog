@@ -26,7 +26,9 @@ import butterknife.ButterKnife;
 public class GenericDialog {
 
     private String title, message;
-    private int icon, titleTextColor, messageTextColor, orientationButton, dialogFont;
+    private int icon, titleTextColor, messageTextColor, buttonOrientation, dialogFont;
+    private float titleTextSize, messageTextSize;
+    private boolean isDialogCancelable;
 
     private GenericDialog(Builder builder) {
         this.title = builder.title;
@@ -34,24 +36,24 @@ public class GenericDialog {
         this.icon = builder.icon;
         this.titleTextColor = builder.titleTextColor;
         this.messageTextColor = builder.messageTextColor;
-        this.orientationButton = builder.buttonOrienation;
+        this.buttonOrientation = builder.buttonOrientation;
         this.dialogFont = builder.dialogFont;
+        this.isDialogCancelable = builder.isDialogCancelable;
+        this.titleTextSize = builder.titleTextSize;
+        this.messageTextSize = builder.messageTextSize;
     }
 
     public static class Builder {
 
-
         private String title, message;
-        private int icon,
-                titleTextColor, messageTextColor, dialogFont;
-        private View view;
+        private int icon, titleTextColor, messageTextColor, dialogFont, buttonOrientation;
         private float titleTextSize, messageTextSize;
+        private boolean isDialogCancelable;
+        private View view;
         private Context context;
         private AlertDialog.Builder dialog;
         private List<Button> buttonList = new ArrayList<>();
-        private int buttonOrienation;
         private Typeface typeface;
-
 
         public Builder(Context context) {
             this.context = context;
@@ -66,7 +68,6 @@ public class GenericDialog {
             this.message = message;
             return this;
         }
-
 
         public Builder setIcon(@DrawableRes int icon) {
             this.icon = icon;
@@ -102,6 +103,7 @@ public class GenericDialog {
             ButterKnife.bind(this, view);
             initViews();
             dialog.setView(view);
+            dialog.setCancelable(isDialogCancelable);
             displayDialog = dialog.show();
             return new GenericDialog(this);
         }
@@ -111,6 +113,7 @@ public class GenericDialog {
 
             //Title
             if (title != null) {
+                txtTitle.setVisibility(View.VISIBLE);
                 txtTitle.setText(title);
                 txtTitle.setTextColor(ResourcesCompat.getColor(context.getResources(), titleTextColor, null));
                 txtTitle.setTextSize(titleTextSize);
@@ -119,6 +122,7 @@ public class GenericDialog {
 
             //Message
             if (message != null) {
+                txtMessage.setVisibility(View.VISIBLE);
                 txtMessage.setText(message);
                 txtMessage.setTextColor(ResourcesCompat.getColor(context.getResources(), messageTextColor, null));
                 txtMessage.setTextSize(messageTextSize);
@@ -127,12 +131,12 @@ public class GenericDialog {
 
             //icon
             if (icon != 0) {
+                ivIcon.setVisibility(View.VISIBLE);
                 ivIcon.setImageResource(icon);
             }
 
-            llContainer.setOrientation(buttonOrienation);
-
-            for (int i = 0; i < buttonList.size(); i++) {
+            llContainer.setOrientation(buttonOrientation);
+            for (int i = 0; i < 2; i++) {
                 llContainer.addView(buttonList.get(i));
             }
         }
@@ -155,12 +159,17 @@ public class GenericDialog {
         }
 
         public Builder setButtonOrientation(int orientation) {
-            this.buttonOrienation = orientation;
+            this.buttonOrientation = orientation;
             return this;
         }
 
         public Builder setDialogFont(@FontRes int font) {
             this.dialogFont = font;
+            return this;
+        }
+
+        public Builder setCancelable(boolean cancel) {
+            this.isDialogCancelable = cancel;
             return this;
         }
     }

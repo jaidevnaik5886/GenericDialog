@@ -1,4 +1,5 @@
 <resources>
+
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -14,14 +15,15 @@
     <style name="PositiveButton">
         <item name="android:text">Yes</item>
         <item name="android:textColor">@color/colorPrimary</item>
-        <item name="android:background">@drawable/back_round_corner</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:padding">8dp</item>
         <item name="android:gravity">center</item>
         <item name="android:fontFamily">cursive</item>
     </style>
 
-    <style name="NegativeButton" >
+    <style name="NegativeButton">
         <item name="android:text">No</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:textColor">@color/colorAccent</item>
         <item name="android:padding">8dp</item>
         <item name="android:gravity">center</item>
