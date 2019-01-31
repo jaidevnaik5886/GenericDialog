@@ -75,7 +75,7 @@ public class GenericDialog {
             return this;
         }
 
-        public Builder setTitleAppearnce(int titleTextColor, float titleTextSize) {
+        public Builder setTitleAppearance(int titleTextColor, float titleTextSize) {
             this.titleTextColor = titleTextColor;
             this.titleTextSize = titleTextSize;
             return this;
