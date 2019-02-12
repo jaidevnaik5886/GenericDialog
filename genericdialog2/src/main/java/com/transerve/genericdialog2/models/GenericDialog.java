@@ -1,4 +1,4 @@
-package com.transerve.genericdialog.models;
+package com.transerve.genericdialog2.models;
 
 import android.content.Context;
 import android.graphics.Typeface;

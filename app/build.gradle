@@ -30,4 +30,5 @@ dependencies {
     implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
 
+compile project(path: ':genericdialog2')
 }
