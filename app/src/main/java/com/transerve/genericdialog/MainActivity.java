@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
                 .setDialogTheme(R.style.GenericDialogTheme)
                 .setIcon(R.drawable.icon)
                 .setTitle("Success !").setTitleAppearance(R.color.colorAccent, 20)
-                .setMessage("Data collected successfullyData collected successfully").setMessageAppearance(R.color.colorPrimary, 14)
+                .setMessage("Data collected successfully").setMessageAppearance(R.color.colorPrimary, 14)
                 .addNewButton(R.style.NegativeButton, new GenericDialogOnClickListener() {
                     @Override
                     public void onClick() {
