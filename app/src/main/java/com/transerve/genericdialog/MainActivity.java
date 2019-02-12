@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-import com.transerve.genericdialog2.models.GenericDialog;
+import com.transerve.genericdialog2.GenericDialog;
 import com.transerve.genericdialog2.models.GenericDialogOnClickListener;
 
 import butterknife.ButterKnife;
