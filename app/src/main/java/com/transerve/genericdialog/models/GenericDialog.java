@@ -1,54 +1,60 @@
 package com.transerve.genericdialog.models;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.FontRes;
 import android.support.annotation.StyleRes;
-import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.ContextThemeWrapper;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.transerve.genericdialog.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class GenericDialog {
 
-    private String title, message, positiveButtonText, negativeButtonText;
-    private int icon, positiveButtonColor, negativeButtonColor, positiveButtonTextColor,
-            negativeButtonTextColor, titleTextColor, messageTextColor;
+    private String title, message;
+    private int icon, titleTextColor, messageTextColor, buttonOrientation, dialogFont, dialogTheme;
+    private float titleTextSize, messageTextSize;
+    private boolean isDialogCancelable;
 
     private GenericDialog(Builder builder) {
         this.title = builder.title;
         this.message = builder.message;
-        this.positiveButtonText = builder.positiveButtonText;
-        this.negativeButtonText = builder.negativeButtonText;
         this.icon = builder.icon;
-        this.positiveButtonColor = builder.positiveButtonColor;
-        this.negativeButtonColor = builder.negativeButtonColor;
-        this.positiveButtonTextColor = builder.positiveButtonTextColor;
-        this.negativeButtonTextColor = builder.negativeButtonTextColor;
         this.titleTextColor = builder.titleTextColor;
         this.messageTextColor = builder.messageTextColor;
+        this.buttonOrientation = builder.buttonOrientation;
+        this.dialogFont = builder.dialogFont;
+        this.isDialogCancelable = builder.isDialogCancelable;
+        this.titleTextSize = builder.titleTextSize;
+        this.messageTextSize = builder.messageTextSize;
+        this.dialogTheme = builder.dialogTheme;
     }
 
     public static class Builder {
 
-        private String title, message, positiveButtonText, negativeButtonText;
-        private int icon, positiveButtonColor, negativeButtonColor, positiveButtonTextColor,
-                negativeButtonTextColor, titleTextColor, messageTextColor, positiveButtonStyle, negativeButtonStyle;
+        private String title, message;
+        private int icon, titleTextColor, messageTextColor, dialogFont, buttonOrientation, dialogTheme;
+        private float titleTextSize, messageTextSize;
+        private boolean isDialogCancelable;
         private View view;
         private Context context;
-        private GenericDialogOnClickListener positiveBtnListener;
-        private GenericDialogOnClickListener negativeBtnListener;
         private AlertDialog.Builder dialog;
-        private int positiveButtonDrawable, negativeButtonDrawable;
+        private List<Button> buttonList = new ArrayList<>();
+        private Typeface typeface;
 
         public Builder(Context context) {
             this.context = context;
@@ -64,112 +70,119 @@ public class GenericDialog {
             return this;
         }
 
-        public Builder setPositiveButton(String positiveButtonText, int positiveButtonDrawable, int positiveButtonColor, int positiveButtonTextColor, GenericDialogOnClickListener positiveBtnListener) {
-            this.positiveButtonText = positiveButtonText;
-            this.positiveButtonDrawable = positiveButtonDrawable;
-            this.positiveButtonColor = positiveButtonColor;
-            this.positiveButtonTextColor = positiveButtonTextColor;
-            this.positiveBtnListener = positiveBtnListener;
-            return this;
-        }
-
-        public Builder setNegativeButton(@StyleRes int negativeButtonStyle, GenericDialogOnClickListener negativeBtnListener) {
-            this.negativeButtonStyle = negativeButtonStyle;
-            this.negativeBtnListener = negativeBtnListener;
-            return this;
-        }
-
-
         public Builder setIcon(@DrawableRes int icon) {
             this.icon = icon;
             return this;
         }
 
-        public Builder setTitleTextColor(int titleTextColor) {
+        public Builder setTitleAppearance(int titleTextColor, float titleTextSize) {
             this.titleTextColor = titleTextColor;
+            this.titleTextSize = titleTextSize;
             return this;
         }
 
-        public Builder setMessageTextColor(int messageTextColor) {
+        public Builder setMessageAppearance(int messageTextColor, float messageTextSize) {
             this.messageTextColor = messageTextColor;
+            this.messageTextSize = messageTextSize;
             return this;
         }
 
-        @BindView(R.id.btn_negative)
-        Button btnNegative;
-        @BindView(R.id.btn_positive)
-        Button btnPositive;
+        @BindView(R.id.ll_container)
+        LinearLayout llContainer;
         @BindView(R.id.txt_title)
         TextView txtTitle;
         @BindView(R.id.txt_message)
         TextView txtMessage;
         @BindView(R.id.iv_icon)
         ImageView ivIcon;
+        AlertDialog displayDialog;
 
         public GenericDialog generate() {
-            dialog = new AlertDialog.Builder(new ContextThemeWrapper(context, R.style.MyAlertDialogTheme));
+            if (dialogTheme != 0) {
+                dialog = new AlertDialog.Builder(new ContextThemeWrapper(context, dialogTheme));
+            } else {
+                dialog = new AlertDialog.Builder(context);
+            }
             dialog.setCancelable(true);
             view = LayoutInflater.from(context).inflate(R.layout.layout_generic_dialog, null);
             ButterKnife.bind(this, view);
             initViews();
             dialog.setView(view);
-            dialog.show();
+            dialog.setCancelable(isDialogCancelable);
+            displayDialog = dialog.show();
             return new GenericDialog(this);
         }
 
         private void initViews() {
-            //Title
-            txtTitle.setText(title);
-            txtTitle.setTextColor(titleTextColor);
-
-
-            //Message
-            txtMessage.setText(message);
-            txtMessage.setTextColor(messageTextColor);
-
-            //icon
-            ivIcon.setImageResource(icon);
-
-
-            //PositveButton
-            if (positiveBtnListener != null) {
-                btnPositive.setVisibility(View.VISIBLE);
-                btnPositive.setText(positiveButtonText);
-                if (positiveButtonDrawable != 0) {
-                    // btnPositive.setBackgroundResource(positiveButtonDrawable);
-                }
-                if (positiveButtonColor != 0) {
-                    btnPositive.setBackgroundColor(ContextCompat.getColor(context, positiveButtonColor));
-                }
-                if (positiveButtonTextColor != 0) {
-                    btnPositive.setTextColor(ContextCompat.getColor(context, positiveButtonTextColor));
-                }
-                btnPositive.setTextAppearance(R.style.GlobalButton);
+            if (dialogFont != 0) {
+                typeface = ResourcesCompat.getFont(context, dialogFont);
             }
 
-            //NegativeButton
-            if (negativeBtnListener != null) {
-                btnNegative.setVisibility(View.VISIBLE);
-                btnNegative.setText(positiveButtonText);
-                btnNegative.setBackgroundColor(ContextCompat.getColor(context, negativeButtonColor));
-                btnNegative.setTextColor(ContextCompat.getColor(context, negativeButtonTextColor));
+            //Title
+            if (title != null) {
+                txtTitle.setVisibility(View.VISIBLE);
+                txtTitle.setText(title);
+                txtTitle.setTextColor(ResourcesCompat.getColor(context.getResources(), titleTextColor, null));
+                txtTitle.setTextSize(titleTextSize);
+                txtTitle.setTypeface(typeface);
+            }
+
+            //Message
+            if (message != null) {
+                txtMessage.setVisibility(View.VISIBLE);
+                txtMessage.setText(message);
+                txtMessage.setTextColor(ResourcesCompat.getColor(context.getResources(), messageTextColor, null));
+                txtMessage.setTextSize(messageTextSize);
+                txtMessage.setTypeface(typeface);
+            }
+
+            //icon
+            if (icon != 0) {
+                ivIcon.setVisibility(View.VISIBLE);
+                ivIcon.setImageResource(icon);
+            }
+
+            llContainer.setOrientation(buttonOrientation);
+            for (int i = 0; i < 2; i++) {
+                llContainer.addView(buttonList.get(i));
             }
         }
 
-        @OnClick({R.id.btn_negative, R.id.btn_positive})
-        public void onViewClicked(View view) {
-            switch (view.getId()) {
-                case R.id.btn_negative:
-                    if (negativeBtnListener != null) {
-                        negativeBtnListener.onClick();
-                    }
-                    break;
-                case R.id.btn_positive:
-                    if (positiveBtnListener != null) {
-                        positiveBtnListener.onClick();
-                    }
-                    break;
-            }
+        public Builder addNewButton(@StyleRes int style, final GenericDialogOnClickListener addBtnListener) {
+            Button addButton = new Button(new ContextThemeWrapper(context, style), null, style);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+            layoutParams.setMargins(8, 0, 8, 0);
+            addButton.setLayoutParams(layoutParams);
+            addButton.setTypeface(typeface);
+            addButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    addBtnListener.onClick();
+                    displayDialog.dismiss();
+                }
+            });
+            buttonList.add(addButton);
+            return this;
+        }
+
+        public Builder setButtonOrientation(int orientation) {
+            this.buttonOrientation = orientation;
+            return this;
+        }
+
+        public Builder setDialogFont(@FontRes int font) {
+            this.dialogFont = font;
+            return this;
+        }
+
+        public Builder setCancelable(boolean cancel) {
+            this.isDialogCancelable = cancel;
+            return this;
+        }
+
+        public Builder setDialogTheme(@StyleRes int genericDialogTheme) {
+            this.dialogTheme = genericDialogTheme;
+            return this;
         }
     }
 }
