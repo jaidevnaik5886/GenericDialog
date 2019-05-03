@@ -1,5 +1,6 @@
 package com.transerve.genericdialog2;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.DrawableRes;
@@ -91,6 +92,7 @@ public class GenericDialog {
         ImageView ivIcon;
         AlertDialog displayDialog;
 
+        @SuppressLint("InflateParams")
         public GenericDialog generate() {
             if (dialogTheme != 0) {
                 dialog = new AlertDialog.Builder(new ContextThemeWrapper(context, dialogTheme));
