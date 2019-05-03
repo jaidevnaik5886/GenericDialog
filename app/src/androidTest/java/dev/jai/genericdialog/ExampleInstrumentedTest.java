@@ -1,4 +1,4 @@
-package com.transerve.genericdialog2;
+package dev.jai.genericdialog;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.transerve.genericdialog2.test", appContext.getPackageName());
+        assertEquals("com.transerve.genericdialog", appContext.getPackageName());
     }
 }
