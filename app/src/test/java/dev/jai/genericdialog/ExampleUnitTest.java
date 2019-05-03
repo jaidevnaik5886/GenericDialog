@@ -1,4 +1,4 @@
-package com.transerve.genericdialog;
+package dev.jai.genericdialog;
 
 import org.junit.Test;
 

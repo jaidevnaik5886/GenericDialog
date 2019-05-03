@@ -29,4 +29,12 @@
         <item name="android:gravity">center</item>
     </style>
 
+
+    <style name="CustomButton">
+        <item name="android:text">Remind Later</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:gravity">center</item>
+    </style>
 </resources>

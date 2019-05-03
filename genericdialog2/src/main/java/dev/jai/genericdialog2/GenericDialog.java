@@ -1,4 +1,4 @@
-package com.transerve.genericdialog2;
+package dev.jai.genericdialog2;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
