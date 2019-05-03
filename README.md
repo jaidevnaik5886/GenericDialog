@@ -43,7 +43,7 @@ implementation 'com.github.jaidevnaik5886:GenericDialog:1.9'
                 .setCancelable(true)
                 .generate();
 ```
-![alt text](https://www.github.com/username/jaidevnaik5886/branch/img1.png)
+![alt text](https://www.github.com/jaidevnaik5886/Screenshot_1556886099.png)
 
 ## Example 2
 ```
