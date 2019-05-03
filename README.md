@@ -16,7 +16,7 @@ allprojects {
 ```
 Add the dependency to your module build.gradle:
 ```
-implementation 'com.github.jaidevnaik5886:GenericDialog:1.8'
+implementation 'com.github.jaidevnaik5886:GenericDialog:1.9'
 
 ```
 ## Example
