@@ -99,8 +99,8 @@ public class GenericDialog {
             }
             dialog.setCancelable(true);
             view = LayoutInflater.from(context).inflate(R.layout.layout_generic_dialog, null);
-            initViews();
             dialog.setView(view);
+            initViews();
             dialog.setCancelable(isDialogCancelable);
             displayDialog = dialog.show();
             return new GenericDialog(this);
