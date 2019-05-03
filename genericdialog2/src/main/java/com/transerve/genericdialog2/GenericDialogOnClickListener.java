@@ -1,4 +1,4 @@
-package com.transerve.genericdialog2.models;
+package com.transerve.genericdialog2;
 
 public  interface GenericDialogOnClickListener {
     void onClick();

@@ -16,7 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.transerve.genericdialog2.R;
-import com.transerve.genericdialog2.models.GenericDialogOnClickListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -121,18 +120,30 @@ public class GenericDialog {
             if (title != null) {
                 txtTitle.setVisibility(View.VISIBLE);
                 txtTitle.setText(title);
-                txtTitle.setTextColor(ResourcesCompat.getColor(context.getResources(), titleTextColor, null));
-                txtTitle.setTextSize(titleTextSize);
-                txtTitle.setTypeface(typeface);
+                if (titleTextColor != 0) {
+                    txtTitle.setTextColor(ResourcesCompat.getColor(context.getResources(), titleTextColor, null));
+                }
+                if (titleTextSize != 0) {
+                    txtTitle.setTextSize(titleTextSize);
+                }
+                if (typeface != null) {
+                    txtTitle.setTypeface(typeface);
+                }
             }
 
             //Message
             if (message != null) {
                 txtMessage.setVisibility(View.VISIBLE);
                 txtMessage.setText(message);
-                txtMessage.setTextColor(ResourcesCompat.getColor(context.getResources(), messageTextColor, null));
-                txtMessage.setTextSize(messageTextSize);
-                txtMessage.setTypeface(typeface);
+                if (messageTextColor != 0) {
+                    txtMessage.setTextColor(ResourcesCompat.getColor(context.getResources(), messageTextColor, null));
+                }
+                if (messageTextSize != 0) {
+                    txtMessage.setTextSize(messageTextSize);
+                }
+                if (typeface != null) {
+                    txtMessage.setTypeface(typeface);
+                }
             }
 
             //icon
