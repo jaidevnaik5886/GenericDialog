@@ -43,7 +43,7 @@ implementation 'com.github.jaidevnaik5886:GenericDialog:1.9'
                 .setCancelable(true)
                 .generate();
 ```
-![alt text](https://raw.githubusercontent.com/jaidevnaik5886/GenericDialog/master/path/to/Screenshot_1556886099.png)
+![alt text](https://raw.githubusercontent.com/jaidevnaik5886/GenericDialog/master/Screenshot_1556886099.png)
 ## Example 2
 ```
  new GenericDialog.Builder(this)
