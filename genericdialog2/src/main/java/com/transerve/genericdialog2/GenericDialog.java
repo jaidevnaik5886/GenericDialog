@@ -153,7 +153,7 @@ public class GenericDialog {
             }
 
             llContainer.setOrientation(buttonOrientation);
-            for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < buttonList.size(); i++) {
                 llContainer.addView(buttonList.get(i));
             }
         }
