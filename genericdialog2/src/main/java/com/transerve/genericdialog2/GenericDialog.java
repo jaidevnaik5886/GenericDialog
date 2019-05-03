@@ -98,7 +98,7 @@ public class GenericDialog {
                 dialog = new AlertDialog.Builder(context);
             }
             dialog.setCancelable(true);
-            view = LayoutInflater.from(context).inflate(R.layout.layout_generic_dialog, null);
+            view = LayoutInflater.from(context).inflate(R.layout.layout_dialog, null);
             dialog.setView(view);
             initViews();
             dialog.setCancelable(isDialogCancelable);
