@@ -1,4 +1,4 @@
-package com.transerve.genericdialog2.models;
+package com.transerve.genericdialog2;
 
 import android.content.Context;
 import android.graphics.Typeface;
@@ -15,13 +15,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.transerve.genericdialog.R;
+import com.transerve.genericdialog2.R;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class GenericDialog {
 
@@ -87,13 +85,9 @@ public class GenericDialog {
             return this;
         }
 
-        @BindView(R.id.ll_container)
         LinearLayout llContainer;
-        @BindView(R.id.txt_title)
         TextView txtTitle;
-        @BindView(R.id.txt_message)
         TextView txtMessage;
-        @BindView(R.id.iv_icon)
         ImageView ivIcon;
         AlertDialog displayDialog;
 
@@ -105,7 +99,6 @@ public class GenericDialog {
             }
             dialog.setCancelable(true);
             view = LayoutInflater.from(context).inflate(R.layout.layout_generic_dialog, null);
-            ButterKnife.bind(this, view);
             initViews();
             dialog.setView(view);
             dialog.setCancelable(isDialogCancelable);
@@ -114,6 +107,11 @@ public class GenericDialog {
         }
 
         private void initViews() {
+            llContainer = view.findViewById(R.id.ll_container);
+            txtTitle = view.findViewById(R.id.txt_title);
+            txtMessage = view.findViewById(R.id.txt_message);
+            ivIcon = view.findViewById(R.id.iv_icon);
+
             if (dialogFont != 0) {
                 typeface = ResourcesCompat.getFont(context, dialogFont);
             }
@@ -122,18 +120,30 @@ public class GenericDialog {
             if (title != null) {
                 txtTitle.setVisibility(View.VISIBLE);
                 txtTitle.setText(title);
-                txtTitle.setTextColor(ResourcesCompat.getColor(context.getResources(), titleTextColor, null));
-                txtTitle.setTextSize(titleTextSize);
-                txtTitle.setTypeface(typeface);
+                if (titleTextColor != 0) {
+                    txtTitle.setTextColor(ResourcesCompat.getColor(context.getResources(), titleTextColor, null));
+                }
+                if (titleTextSize != 0) {
+                    txtTitle.setTextSize(titleTextSize);
+                }
+                if (typeface != null) {
+                    txtTitle.setTypeface(typeface);
+                }
             }
 
             //Message
             if (message != null) {
                 txtMessage.setVisibility(View.VISIBLE);
                 txtMessage.setText(message);
-                txtMessage.setTextColor(ResourcesCompat.getColor(context.getResources(), messageTextColor, null));
-                txtMessage.setTextSize(messageTextSize);
-                txtMessage.setTypeface(typeface);
+                if (messageTextColor != 0) {
+                    txtMessage.setTextColor(ResourcesCompat.getColor(context.getResources(), messageTextColor, null));
+                }
+                if (messageTextSize != 0) {
+                    txtMessage.setTextSize(messageTextSize);
+                }
+                if (typeface != null) {
+                    txtMessage.setTypeface(typeface);
+                }
             }
 
             //icon

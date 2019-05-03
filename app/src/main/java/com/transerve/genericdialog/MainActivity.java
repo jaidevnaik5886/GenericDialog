@@ -2,15 +2,13 @@ package com.transerve.genericdialog;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.transerve.genericdialog2.GenericDialog;
+import com.transerve.genericdialog2.GenericDialogOnClickListener;
 
-import com.transerve.genericdialog2.models.GenericDialog;
-import com.transerve.genericdialog2.models.GenericDialogOnClickListener;
-
-import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,17 +16,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.btn_click)
-    public void onViewClicked() {
+    public void onViewClicked(View view) {
         new GenericDialog.Builder(this)
                 .setDialogFont(R.font.nunito_bold)
                 .setDialogTheme(R.style.GenericDialogTheme)
                 .setIcon(R.drawable.icon)
-                .setTitle("Success !").setTitleAppearance(R.color.colorAccent, 20)
-                .setMessage("Data collected successfully").setMessageAppearance(R.color.colorPrimary, 14)
+                .setTitle("Success  !")
+                .setMessage("Data collected successfully").setMessageAppearance(0, 14)
                 .addNewButton(R.style.NegativeButton, new GenericDialogOnClickListener() {
                     @Override
                     public void onClick() {
@@ -44,6 +40,5 @@ public class MainActivity extends AppCompatActivity {
                 .setButtonOrientation(LinearLayout.HORIZONTAL)
                 .setCancelable(true)
                 .generate();
-
     }
 }

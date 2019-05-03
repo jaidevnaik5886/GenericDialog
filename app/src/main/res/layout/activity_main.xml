@@ -9,6 +9,7 @@
     <Button
         android:id="@+id/btn_click"
         android:layout_width="wrap_content"
+        android:onClick="onViewClicked"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
