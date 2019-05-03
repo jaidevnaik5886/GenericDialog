@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
                 .setDialogFont(R.font.nunito_bold)
                 .setDialogTheme(R.style.GenericDialogTheme)
                 .setIcon(R.drawable.icon)
-                .setTitle("Success !")
+                .setTitle("Success  !")
                 .setMessage("Data collected successfully").setMessageAppearance(0, 14)
                 .addNewButton(R.style.NegativeButton, new GenericDialogOnClickListener() {
                     @Override
