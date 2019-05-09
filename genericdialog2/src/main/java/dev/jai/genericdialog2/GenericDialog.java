@@ -161,7 +161,7 @@ public class GenericDialog {
         public Builder addNewButton(@StyleRes int style, final GenericDialogOnClickListener addBtnListener) {
             Button addButton = new Button(new ContextThemeWrapper(context, style), null, style);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-            layoutParams.setMargins(8, 0, 8, 0);
+            layoutParams.setMargins(8, 8, 8, 8);
             addButton.setLayoutParams(layoutParams);
             addButton.setTypeface(typeface);
             addButton.setOnClickListener(new View.OnClickListener() {
