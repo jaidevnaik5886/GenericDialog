@@ -27,19 +27,19 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage("Are you sure want to rate the app")
                 .addNewButton(R.style.CustomButton, new GenericDialogOnClickListener() {
                     @Override
-                    public void onClick() {
+                    public void onClick(View view) {
                         Toast.makeText(MainActivity.this, "Remind me later Clicked", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addNewButton(R.style.PositiveButton, new GenericDialogOnClickListener() {
                     @Override
-                    public void onClick() {
+                    public void onClick(View view) {
                         Toast.makeText(MainActivity.this, "OK Clicked", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addNewButton(R.style.NegativeButton, new GenericDialogOnClickListener() {
                     @Override
-                    public void onClick() {
+                    public void onClick(View view) {
                         Toast.makeText(MainActivity.this, "Cancel Clicked", Toast.LENGTH_SHORT).show();
                     }
                 })

@@ -167,7 +167,7 @@ public class GenericDialog {
             addButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    addBtnListener.onClick();
+                    addBtnListener.onClick(view);
                     displayDialog.dismiss();
                 }
             });
