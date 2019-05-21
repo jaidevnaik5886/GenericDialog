@@ -20,60 +20,26 @@ implementation 'com.github.jaidevnaik5886:GenericDialog:2.2'
 implementation 'com.github.jaidevnaik5886:GenericDialog:2.3' //For AndroidX Support
 
 ```
-## Example 1
+## Usage 
 ```
-  new GenericDialog.Builder(this)
+    new GenericDialog.Builder(this)
                 .setDialogFont(R.font.nunito_bold)
                 .setDialogTheme(R.style.GenericDialogTheme)
-                .setIcon(R.drawable.icon)
-                .setTitle("Success!")
-                .setMessage("Completed successfully").setMessageAppearance(0, 14)
-                .addNewButton(R.style.NegativeButton, new GenericDialogOnClickListener() {
-                    @Override
-                    public void onClick() {
-                        Toast.makeText(MainActivity.this, "No Clicked", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addNewButton(R.style.PositiveButton, new GenericDialogOnClickListener() {
-                    @Override
-                    public void onClick() {
-                        Toast.makeText(MainActivity.this, "Yes Clicked", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .setButtonOrientation(LinearLayout.HORIZONTAL)
-                .setCancelable(true)
-                .generate();
-```
-![alt text](https://raw.githubusercontent.com/jaidevnaik5886/GenericDialog/master/Screenshot_1556886099.png)
-## Example 2
-```
- new GenericDialog.Builder(this)
-                .setDialogFont(R.font.nunito_bold)
-                .setDialogTheme(R.style.GenericDialogTheme)
-                .setIcon(android.R.drawable.btn_radio)
-                .setTitle("Alert  !").setTitleAppearance(R.color.colorPrimaryDark, 16)
-                .setMessage("Are you sure want to rate the app")
+                .setIcon(android.R.drawable.checkbox_on_background)
+                .setTitle("Success  !").setTitleAppearance(R.color.colorPrimaryDark, 16)
+                .setMessage("Data Collected Successfully")
                 .addNewButton(R.style.CustomButton, new GenericDialogOnClickListener() {
                     @Override
-                    public void onClick() {
-                        Toast.makeText(MainActivity.this, "Remind me later Clicked", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addNewButton(R.style.PositiveButton, new GenericDialogOnClickListener() {
-                    @Override
-                    public void onClick() {
-                        Toast.makeText(MainActivity.this, "OK Clicked", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addNewButton(R.style.NegativeButton, new GenericDialogOnClickListener() {
-                    @Override
-                    public void onClick() {
-                        Toast.makeText(MainActivity.this, "Cancel Clicked", Toast.LENGTH_SHORT).show();
+                    public void onClick(View view) {
+                        Toast.makeText(MainActivity.this, "OK later Clicked", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setButtonOrientation(LinearLayout.HORIZONTAL)
                 .setCancelable(true)
                 .generate();
 ```
-![alt text](https://raw.githubusercontent.com/jaidevnaik5886/GenericDialog/master/Screenshot_1556886364.png)
+##ScreenShots
+
+![alt text](https://raw.githubusercontent.com/jaidevnaik5886/GenericDialog/master/Screenshot_1556886099.png)
+
 
