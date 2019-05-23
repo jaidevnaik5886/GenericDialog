@@ -40,6 +40,6 @@ implementation 'com.github.jaidevnaik5886:GenericDialog:2.3' //For AndroidX Supp
 ```
 ## ScreenShots
 
-![alt text](https://raw.githubusercontent.com/jaidevnaik5886/GenericDialog/master/Screenshot_1556886099.png)
+![alt text](https://raw.githubusercontent.com/jaidevnaik5886/GenericDialog/master/img.png)
 
 
