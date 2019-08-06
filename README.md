@@ -44,4 +44,4 @@ implementation 'com.github.jaidevnaik5886:GenericDialog:2.3' //For AndroidX Supp
 
 ![alt text](https://raw.githubusercontent.com/jaidevnaik5886/GenericDialog/master/img.png)
 
-
+[![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/P5P810RKM)
